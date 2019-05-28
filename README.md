@@ -1,33 +1,3 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ## Installation
 
 ```bash
@@ -47,29 +17,32 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
 
-```bash
-# unit tests
-$ npm run test
+### Architecture
+The architecture for CineWeb is very simple. It contains four elements:
+1. A Frontend APP written in VueJS
+1. A Backend API written in TypeScript and using the NestJS Framework
+1. A cache layer using Redis
+1. TMDb as the project database
 
-# e2e tests
-$ npm run test:e2e
+![](./docs/diagram1.png)
 
-# test coverage
-$ npm run test:cov
-```
+### Assumptions
+1. The project description asks for a search for movies feature. Since it doesn't say the search should be only on upcoming movies, I used the search on all movies API available from TMDb.
 
-## Support
+### Frontend Libraries
+* **vue:** Main frontend framework.
+* **vue-router:** Makes it easier to handle routes on Vue APPs
+* **rxjs:** Used for reactive programing using Observables to make it easier to handle async events and callback. (e.g. It's used in API requests in the APP)
+* Other libraries contain code for browser polyfills, typescript transpiling and code packing for browsers.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Backend Libraries
+* **nestjs:** A Progressive NodeJS framework. It contains modules for functionalities such as dependency injection, router setup using decorators syntax and auto generating API documentation.
+* **axios:** HTTP client. Used to make it easier to call TMDb API.
+* **class-transformer and class-validator:** Both are used internally by NestJS for validating client API request.
+* **ioredis:** Used for accessing Redis DB interface from the Node APP.
+* **lodash:** General purpose library. It provides some useful methods.
+* **moment:** Provides date handling utilities. It's only used for providing a human readable release date for movies.
+* **winston:** Provides useful logging utilities. It's used for logging server side errors.
+* Other libraries are used internally by other libraries or for transpiling Typescript code into JavaScript.
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
