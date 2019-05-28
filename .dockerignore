@@ -1,0 +1,16 @@
+.code/
+.idea/
+.git/
+node_modules/
+dist/
+logs/
+.dockerignore
+.gitignore
+.prettierrc
+docker-compose*
+Dockerfile*
+nest-cli.json
+nodemon.json
+nodemon-debug.json
+README.md
+tslint.json
