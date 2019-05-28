@@ -1,0 +1,21 @@
+{
+  "app": {
+    "name": "cineweb",
+    "port": 3000,
+    "cors": true,
+    "docs": true,
+    "baseURL": "https://api.cineweb.konradt.co"
+  },
+  "redis": {
+    "host": "redis"
+  },
+  "tmdb": {
+    "baseURL": "https://api.themoviedb.org/3",
+    "params": {
+      "api_key": "1f54bd990f1cdfb230adb312546d765d"
+    }
+  },
+  "cache": {
+    "prefix": "cineweb"
+  }
+}

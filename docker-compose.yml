@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   redis:
-    image: redis:
+    image: redis:4
     ports:
       - 6379:6379
 
@@ -16,3 +16,5 @@ services:
       - ./logs:/srv/app/logs
     ports:
       - 3000:3000
+    environment:
+      - CONFIG_FILE_PATH=config/development.json
